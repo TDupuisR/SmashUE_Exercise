@@ -3,6 +3,8 @@
 
 #include "Characters/SmashCharacter.h"
 
+#include "Android/AndroidPlatformMisc.h"
+
 // Sets default values
 ASmashCharacter::ASmashCharacter()
 {
@@ -10,25 +12,27 @@ ASmashCharacter::ASmashCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 }
-
-// Called when the game starts or when spawned
-void ASmashCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
 void ASmashCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	RotateMeshUsingOrientX();
 }
 
-// Called to bind functionality to input
-void ASmashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+float ASmashCharacter::GetOrientX() const
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	return OrientX;
 }
+
+void ASmashCharacter::SetOrientX(float NewOrientX)
+{
+	OrientX = NewOrientX;
+}
+
+void ASmashCharacter::RotateMeshUsingOrientX() const
+{
+	FRotator Rotation = GetMesh()->GetRelativeRotation();
+	Rotation.Yaw = -90.f * OrientX;
+	GetMesh()->SetRelativeRotation(Rotation);
+}
+
 
