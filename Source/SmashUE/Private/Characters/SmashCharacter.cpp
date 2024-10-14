@@ -3,8 +3,6 @@
 
 #include "Characters/SmashCharacter.h"
 
-#include "Android/AndroidPlatformMisc.h"
-
 // Sets default values
 ASmashCharacter::ASmashCharacter()
 {
@@ -12,10 +10,20 @@ ASmashCharacter::ASmashCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 }
+void ASmashCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
 void ASmashCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	RotateMeshUsingOrientX();
+}
+// Called to bind functionality to input
+void ASmashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
 float ASmashCharacter::GetOrientX() const
