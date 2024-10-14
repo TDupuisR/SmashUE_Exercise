@@ -4,6 +4,7 @@
 #include "Characters/SmashCharacter.h"
 #include "Characters/SmashCharacterStateMachine.h"
 #include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
 
 // Sets default values
 ASmashCharacter::ASmashCharacter()
@@ -39,6 +40,11 @@ void ASmashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	SetupMappingContextIntoController();
+
+	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	if(EnhancedInputComponent == nullptr) return;
+
+	BindInputMoveXAxisAndActions(EnhancedInputComponent);
 }
 
 float ASmashCharacter::GetOrientX() const
@@ -80,4 +86,44 @@ void ASmashCharacter::SetupMappingContextIntoController() const
 	if (InputSystem == nullptr) return;
 
 	InputSystem->AddMappingContext(InputMappingContext, 0);
+}
+
+float ASmashCharacter::GetInputMoveX() const
+{
+	return InputMoveX;
+}
+
+void ASmashCharacter::BindInputMoveXAxisAndActions(UEnhancedInputComponent* EnhancedInputComponent)
+{
+	if (InputData == nullptr) return;
+
+	if(InputData->InputActionMoveX)
+	{
+		EnhancedInputComponent->BindAction(
+			InputData->InputActionMoveX,
+			ETriggerEvent::Started,
+			this,
+			&ASmashCharacter::OnInputMoveX
+			),
+
+		EnhancedInputComponent->BindAction(
+			InputData->InputActionMoveX,
+			ETriggerEvent::Completed,
+			this,
+			&ASmashCharacter::OnInputMoveX
+			),
+
+		EnhancedInputComponent->BindAction(
+			InputData->InputActionMoveX,
+			ETriggerEvent::Triggered,
+			this,
+			&ASmashCharacter::OnInputMoveX
+			);
+	}
+}
+
+
+void ASmashCharacter::OnInputMoveX(const FInputActionValue& InputActionValue)
+{
+	InputMoveX = InputActionValue.Get<float>();
 }
