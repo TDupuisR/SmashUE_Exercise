@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/SmashCharacterState.h"
+#include "Characters/State/SmashCharacterState.h"
 #include "SmashCharacterStateRun.generated.h"
 
 
@@ -13,5 +13,9 @@ class SMASHUE_API USmashCharacterStateRun : public USmashCharacterState
 	GENERATED_BODY()
 
 public:
+
+	virtual void StateEnter(ESmashCharacterStateID PreviousStateID) override;
+	virtual void StateExit(ESmashCharacterStateID NextStateID) override;
+	
 	virtual void StateTick(float DeltaTime) override;
 };

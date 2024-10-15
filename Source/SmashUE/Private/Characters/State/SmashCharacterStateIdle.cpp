@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Characters/SmashCharacterStateIdle.h"
+#include "Characters//State/SmashCharacterStateIdle.h"
 #include "Characters/SmashCharacter.h"
-#include "Characters/SmashCharacterStateMachine.h"
+#include "Characters/State/SmashCharacterStateMachine.h"
 
 
 ESmashCharacterStateID USmashCharacterStateIdle::GetStateID()

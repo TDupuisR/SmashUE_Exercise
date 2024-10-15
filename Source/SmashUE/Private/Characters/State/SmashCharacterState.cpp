@@ -2,7 +2,7 @@
 
 
 #include "SmashCharacterState.h"
-#include "Characters/SmashCharacterStateMachine.h"
+#include "Characters/State/SmashCharacterStateMachine.h"
 
 // Sets default values for this component's properties
 USmashCharacterState::USmashCharacterState()

@@ -2,7 +2,7 @@
 
 
 #include "Characters/SmashCharacter.h"
-#include "Characters/SmashCharacterStateMachine.h"
+#include "Characters/State/SmashCharacterStateMachine.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 

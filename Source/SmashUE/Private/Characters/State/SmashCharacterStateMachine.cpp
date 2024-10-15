@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Characters/SmashCharacterStateMachine.h"
+#include "Characters/State/SmashCharacterStateMachine.h"
 #include "Characters/SmashCharacter.h"
-#include "Characters/SmashCharacterState.h"
+#include "Characters/State/SmashCharacterState.h"
 
 void USmashCharacterStateMachine::Init(ASmashCharacter* InCharacter)
 {

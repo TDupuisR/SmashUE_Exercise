@@ -3,12 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/SmashCharacterState.h"
-#include "SmashCharacterStateIdle.generated.h"
+#include "Characters/State/SmashCharacterState.h"
+#include "SmashCharacterStateWalk.generated.h"
 
 
 UCLASS(ClassGroup=(SmashCharacterState), meta=(BlueprintSpawnableComponent))
-class SMASHUE_API USmashCharacterStateIdle : public USmashCharacterState
+class SMASHUE_API USmashCharacterStateWalk : public USmashCharacterState
 {
 	GENERATED_BODY()
 
@@ -18,7 +18,7 @@ public:
 	virtual void StateEnter(ESmashCharacterStateID PreviousStateID) override;
 	virtual void StateExit(ESmashCharacterStateID NextStateID) override;
 
-	virtual void StateTick(float Deltatime) override;
+	virtual void StateTick(float DeltaTime) override;
 
 	UFUNCTION()
 	void OnInputMoveXFast(float InputMoveX);

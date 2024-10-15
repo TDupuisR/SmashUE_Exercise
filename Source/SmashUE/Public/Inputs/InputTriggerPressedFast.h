@@ -6,9 +6,7 @@
 #include "InputTriggers.h"
 #include "InputTriggerPressedFast.generated.h"
 
-/**
- * 
- */
+
 UCLASS(NotBlueprintable, meta = (DisplayName= "Pressed Fast", NotInputConfigurable="true"))
 class SMASHUE_API UInputTriggerPressedFast : public UInputTrigger
 {

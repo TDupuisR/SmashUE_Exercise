@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Characters/SmashCharacterStateID.h"
+#include "Characters/State/SmashCharacterStateID.h"
 #include "SmashCharacterState.generated.h"
 
 class ASmashCharacter;
