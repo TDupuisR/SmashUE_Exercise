@@ -11,7 +11,7 @@ bool FLocalMultiplayerProfileData::ContainsKey(const FKey& Key, ELocalMultiplaye
 
 	TArray<FEnhancedActionKeyMapping> Mappings = CurrentMappingType->GetMappings();
 
-	for (int32 i = 0; i < Mappings.Num(); i++)
+	for (int16 i = 0; i < Mappings.Num(); i++)
 	{
 		if (Mappings[i].Key == Key)
 			return true;
@@ -35,10 +35,16 @@ UInputMappingContext* FLocalMultiplayerProfileData::GetIMCFromType(ELocalMultipl
 
 int ULocalMultiplayerSettings::GetNbKeyboardProfiles() const
 {
-	return -1;
+	return KeyboardProfilesData.Num();
 }
 
 int ULocalMultiplayerSettings::FindKeyboardProfileIndexFromKey(const FKey& Key, ELocalMultiplayerInputMappingType MappingType) const
 {
+	for (int16 i = 0; i < KeyboardProfilesData.Num(); i++)
+	{
+		if(KeyboardProfilesData[i].ContainsKey(Key, MappingType))
+			return i;
+	}
+	
 	return -1;
 }
